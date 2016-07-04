@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Vendor: Pivotal Software, Inc.
+Implementation-Title: security
+Implementation-Version: 0.0.1
+Implementation-Vendor-Id: hs
+Build-Jdk: 1.7.0_51
+Built-By: Fero
+Created-By: Maven Integration for Eclipse
+

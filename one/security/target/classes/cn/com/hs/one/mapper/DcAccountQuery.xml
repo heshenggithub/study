@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.hs.one.mapper.DcAccountQuery">
+    <!--按主键进行查询，返回唯一一条记录 对应repository findOne方法 -->
+    <select id="findByUsername" parameterType="string" resultType="DcAccount">
+        SELECT 
+            *
+        FROM 
+            DC_ACCOUNT
+        WHERE
+            CELPHONE = #{login} OR EMAIL=#{login}
+    </select>
+</mapper>

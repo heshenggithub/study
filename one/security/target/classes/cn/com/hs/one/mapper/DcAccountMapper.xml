@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.hs.one.mapper.DcAccountMapper">
+
+    <!--基本字段定义 -->
+    <!-- 
+    <sql id="base_column">
+        ACCOUNT_ID,
+        USERID,
+        USER_NAME,
+        ACCOUNT,
+        CELPHONE,
+        ID_NUM,
+        EMAIL,
+        ADDRESS,
+        GENDER,
+        BIRTHDAY,
+        PASSWORD,
+        PASSWORD_SALT,
+        OPT_PASSWORD,
+        OPT_PASSWORD_SALT,
+        FAILED_LOGIN_COUNT,
+        LAST_LOGIN_TIME,
+        LOGIN_COUNT,
+        USER_ATTR_TYPE,
+        USER_BIZ_TYPE,
+        REGIST_IP,
+        REGIST_TIME,
+        ACTIVE,
+        VALID_FLAG,
+        COUNTRY,
+        AREA,
+        IDENTITY,
+        MULTI_PASSWORD,
+        EQUIP,
+        CREATE_TIME,
+        UPDATE_TIME,
+        OPEN_ID,
+        CONTACT_NAME,
+        GROUP_ID,
+        STAFF_FLG,
+        OUTSIDE_TYPE
+    </sql>
+ -->
+    <!--按主键进行查询，返回唯一一条记录 对应repository findOne方法 -->
+    <select id="findOne" parameterType="string" resultType="DcAccount">
+        SELECT 
+            *
+        FROM 
+            DC_ACCOUNT
+        WHERE
+            ACCOUNT_ID = #{accountId}
+    </select>
+ 
+     <!--按主键进行查询，返回唯一一条记录 对应repository findDcAccountByemail方法 -->
+    <select id="findDcAccountByEmail" parameterType="string" resultType="DcAccount">
+        SELECT
+            *
+        FROM
+            DC_ACCOUNT
+        WHERE
+            EMAIL = #{email}
+    </select>
+	<select id="findDcAccountByUserId" parameterType="string" resultType="DcAccount">
+        SELECT
+            *
+        FROM
+            DC_ACCOUNT
+        WHERE
+            USERID = #{userid}
+    </select>
+    <select id="findDcAccountByAccount" parameterType="string" resultType="DcAccount">
+        SELECT
+            *
+        FROM
+            DC_ACCOUNT
+        WHERE
+            ACCOUNT = #{account}
+    </select>
+    <select id="findDcAccountByCelphone" parameterType="string" resultType="DcAccount">
+        SELECT
+            *
+        FROM
+            DC_ACCOUNT
+        WHERE
+            CELPHONE = #{celphone}
+    </select>
+    <select id="getSeqUserId" resultType="String">
+        select userSeqId()
+    </select>
+    <!--按主键进行查询，返回唯一一条记录 对应repository findDcAccountByopenId方法 -->
+    <select id="findDcAccountByOpenId" parameterType="string" resultType="DcAccount">
+        SELECT
+            *
+        FROM
+            DC_ACCOUNT
+        WHERE
+            OPEN_ID = #{openId}
+    </select>
+
+    <!--无条件全部记录检索 对应repository findAll方法 -->
+    <select id="findAll" resultType="DcAccount">
+        SELECT 
+            *
+        FROM 
+            DC_ACCOUNT
+    </select>
+
+    <!--无条件全部记录分页检索 对应repository findAll方法 -->
+    <select id="findPageAll" parameterType="DcAccount" resultType="DcAccount">
+        SELECT
+            *
+        FROM 
+            DC_ACCOUNT
+    </select>
+
+    <!--插入记录 对应repository insert方法 -->
+    <insert id="insert" parameterType="DcAccount">
+        INSERT INTO
+            DC_ACCOUNT
+        VALUES
+        (
+          #{accountId},
+          #{userid},
+          #{userName},
+          #{account},
+          #{celphone},
+          #{idNum},
+          #{email},
+          #{address},
+          #{gender},
+          #{birthday},
+          #{password},
+          #{passwordSalt},
+          #{optPassword},
+          #{optPasswordSalt},
+          #{failedLoginCount},
+          #{lastLoginTime},
+          #{loginCount},
+          #{userAttrType},
+          #{userBizType},
+          #{registIp},
+          #{registTime},
+          #{active},
+          #{validFlag},
+          #{country},
+          #{area},
+          #{identity},
+          #{multiPassword},
+          #{equip},
+          #{createTime},
+          #{updateTime},
+          #{openId},
+          #{contactName},
+          #{groupId},
+          #{staffFlg},
+          #{outsideType}
+        )
+    </insert>
+
+    <!--动态更新 对Input来的数据不为空的字段进行更新 对应repository dynamicUpdate方法 -->
+    <update id="dynamicUpdate" parameterType="DcAccount">
+        UPDATE
+            DC_ACCOUNT
+        <set>
+            <if test="userid != null">
+                USERID = #{userid},
+            </if>
+            <if test="userName != null">
+                USER_NAME = #{userName},
+            </if>
+            <if test="account != null">
+                ACCOUNT = #{account},
+            </if>
+            <if test="celphone != null">
+                CELPHONE = #{celphone},
+            </if>
+            <if test="idNum != null">
+                ID_NUM = #{idNum},
+            </if>
+            <if test="email != null">
+                EMAIL = #{email},
+            </if>
+            <if test="address != null">
+                ADDRESS = #{address},
+            </if>
+            <if test="gender != null">
+                GENDER = #{gender},
+            </if>
+            <if test="birthday != null">
+                BIRTHDAY = #{birthday},
+            </if>
+            <if test="password != null">
+                PASSWORD = #{password},
+            </if>
+            <if test="passwordSalt != null">
+                PASSWORD_SALT = #{passwordSalt},
+            </if>
+            <if test="optPassword != null">
+                OPT_PASSWORD = #{optPassword},
+            </if>
+            <if test="optPasswordSalt != null">
+                OPT_PASSWORD_SALT = #{optPasswordSalt},
+            </if>
+            <if test="failedLoginCount != null">
+                FAILED_LOGIN_COUNT = #{failedLoginCount},
+            </if>
+            <if test="lastLoginTime != null">
+                LAST_LOGIN_TIME = #{lastLoginTime},
+            </if>
+            <if test="loginCount != null">
+                LOGIN_COUNT = #{loginCount},
+            </if>
+            <if test="userAttrType != null">
+                USER_ATTR_TYPE = #{userAttrType},
+            </if>
+            <if test="userBizType != null">
+                USER_BIZ_TYPE = #{userBizType},
+            </if>
+            <if test="registIp != null">
+                REGIST_IP = #{registIp},
+            </if>
+            <if test="registTime != null">
+                REGIST_TIME = #{registTime},
+            </if>
+            <if test="active != null">
+                ACTIVE = #{active},
+            </if>
+            <if test="validFlag != null">
+                VALID_FLAG = #{validFlag},
+            </if>
+            <if test="country != null">
+                COUNTRY = #{country},
+            </if>
+            <if test="area != null">
+                AREA = #{area},
+            </if>
+            <if test="identity != null">
+                IDENTITY = #{identity},
+            </if>
+            <if test="multiPassword != null">
+                MULTI_PASSWORD = #{multiPassword},
+            </if>
+            <if test="equip != null">
+                EQUIP = #{equip},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME = #{updateTime},
+            </if>
+            <if test="openId != null">
+                OPEN_ID = #{openId},
+            </if>
+            <if test="contactName != null">
+                CONTACT_NAME = #{contactName},
+            </if>
+            <if test="groupId != null">
+                GROUP_ID = #{groupId},
+            </if>
+            <if test="staffFlg != null">
+                STAFF_FLG = #{staffFlg},
+            </if>
+            <if test="outsideType != null">
+                OUTSIDE_TYPE = #{outsideType}
+            </if>
+        </set>
+        WHERE
+            ACCOUNT_ID = #{accountId}
+    </update>
+
+    <!--动态更新 按照实体的值实际数据进行更新对应repository update方法 -->
+    <update id="update" parameterType="DcAccount">
+        UPDATE
+            DC_ACCOUNT
+        SET
+            USERID = #{userid},
+            USER_NAME = #{userName},
+            ACCOUNT = #{account},
+            CELPHONE = #{celphone},
+            ID_NUM = #{idNum},
+            EMAIL = #{email},
+            ADDRESS = #{address},
+            GENDER = #{gender},
+            BIRTHDAY = #{birthday},
+            PASSWORD = #{password},
+            PASSWORD_SALT = #{passwordSalt},
+            OPT_PASSWORD = #{optPassword},
+            OPT_PASSWORD_SALT = #{optPasswordSalt},
+            FAILED_LOGIN_COUNT = #{failedLoginCount},
+            LAST_LOGIN_TIME = #{lastLoginTime},
+            LOGIN_COUNT = #{loginCount},
+            USER_ATTR_TYPE = #{userAttrType},
+            USER_BIZ_TYPE = #{userBizType},
+            REGIST_IP = #{registIp},
+            REGIST_TIME = #{registTime},
+            ACTIVE = #{active},
+            VALID_FLAG = #{validFlag},
+            COUNTRY = #{country},
+            AREA = #{area},
+            IDENTITY = #{identity},
+            MULTI_PASSWORD = #{multiPassword},
+            EQUIP = #{equip},
+            CREATE_TIME = #{createTime},
+            UPDATE_TIME = #{updateTime},
+            OPEN_ID = #{openId},
+            CONTACT_NAME = #{contactName},
+            GROUP_ID = #{groupId},
+            STAFF_FLG = #{staffFlg},
+            OUTSIDE_TYPE = #{outsideType}
+        WHERE
+            ACCOUNT_ID = #{accountId}
+    </update>
+    
+    <!--假删除 对应repository suspend方法 -->
+    <update id="suspend" parameterType="string">
+        UPDATE
+            DC_ACCOUNT
+        SET
+            DEL_FLAG=1
+        WHERE
+            ACCOUNT_ID = #{accountId}
+    </update>
+    
+    <!--真删除 对应repository delete方法 -->    
+    <delete id="delete" parameterType="string">
+        DELETE FROM 
+            DC_ACCOUNT
+        WHERE
+            ACCOUNT_ID = #{accountId}
+    </delete>
+</mapper>
